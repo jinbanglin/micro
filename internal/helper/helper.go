@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/micro/cli"
-	"github.com/micro/go-micro/metadata"
+	"github.com/jinbanglin/cli"
+	"github.com/jinbanglin/go-micro/metadata"
 )
 
 func ACMEHosts(ctx *cli.Context) []string {

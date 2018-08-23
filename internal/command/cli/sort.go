@@ -1,7 +1,7 @@
 package cli
 
 import (
-	"github.com/micro/go-micro/registry"
+	"github.com/jinbanglin/go-micro/registry"
 )
 
 type sortedServices struct {

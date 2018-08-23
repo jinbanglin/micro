@@ -23,7 +23,7 @@ func (e *Example) Call(ctx context.Context, req *example.Request, rsp *example.R
 import (
 	"context"
 
-	"github.com/micro/go-log"
+	"github.com/jinbanglin/log"
 
 	example "{{.Dir}}/proto/example"
 )
@@ -39,10 +39,10 @@ func (e *Example) Call(ctx context.Context, req *example.Request, rsp *example.R
 
 // Stream is a server side stream handler called via client.Stream or the generated client code
 func (e *Example) Stream(ctx context.Context, req *example.StreamingRequest, stream example.Example_StreamStream) error {
-	log.Logf("Received Example.Stream request with count: %d", req.Count)
+	log.Infof("Received Example.Stream request with count: %d", req.Count)
 
 	for i := 0; i < int(req.Count); i++ {
-		log.Logf("Responding: %d", i)
+		log.Infof("Responding: %d", i)
 		if err := stream.Send(&example.StreamingResponse{
 			Count: int64(i),
 		}); err != nil {
@@ -60,7 +60,7 @@ func (e *Example) PingPong(ctx context.Context, stream example.Example_PingPongS
 		if err != nil {
 			return err
 		}
-		log.Logf("Got ping %v", req.Stroke)
+		log.Infof("Got ping %v", req.Stroke)
 		if err := stream.Send(&example.Pong{Stroke: req.Stroke}); err != nil {
 			return err
 		}
@@ -73,7 +73,7 @@ func (e *Example) PingPong(ctx context.Context, stream example.Example_PingPongS
 import (
 	"context"
 
-	"github.com/micro/go-log"
+	"github.com/jinbanglin/log"
 
 	example "{{.Dir}}/proto/example"
 )
@@ -90,7 +90,7 @@ func (e *Example) Handle(ctx context.Context, msg *example.Message) error {
 
 import (
 	"context"
-	"github.com/micro/go-log"
+	"github.com/jinbanglin/log"
 
 	example "{{.Dir}}/proto/example"
 )
@@ -113,12 +113,12 @@ func Handler(ctx context.Context, msg *example.Message) error {
 import (
 	"context"
 	"encoding/json"
-	"github.com/micro/go-log"
+	"github.com/jinbanglin/log"
 
 	"{{.Dir}}/client"
-	"github.com/micro/go-micro/errors"
-	api "github.com/micro/go-api/proto"
-	example "github.com/micro/examples/template/srv/proto/example"
+	"github.com/jinbanglin/go-micro/errors"
+	api "github.com/jinbanglin/go-api/proto"
+	example "github.com/jinbanglin/examples/template/srv/proto/example"
 )
 
 type Example struct{}
@@ -168,8 +168,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/micro/go-micro/client"
-	example "github.com/micro/examples/template/srv/proto/example"
+	"github.com/jinbanglin/go-micro/client"
+	example "github.com/jinbanglin/examples/template/srv/proto/example"
 )
 
 func ExampleCall(w http.ResponseWriter, r *http.Request) {

@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/micro/cli"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/cmd"
-	clic "github.com/micro/micro/internal/command/cli"
+	"github.com/jinbanglin/cli"
+	"github.com/jinbanglin/go-micro/client"
+	"github.com/jinbanglin/go-micro/cmd"
+	clic "github.com/jinbanglin/micro/internal/command/cli"
 )
 
 type helper func(*cli.Context, []string)

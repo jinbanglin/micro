@@ -8,22 +8,23 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/micro/cli"
-	"github.com/micro/go-api"
-	ahandler "github.com/micro/go-api/handler"
-	aapi "github.com/micro/go-api/handler/api"
-	"github.com/micro/go-api/handler/event"
-	ahttp "github.com/micro/go-api/handler/http"
-	arpc "github.com/micro/go-api/handler/rpc"
-	"github.com/micro/go-api/handler/web"
-	"github.com/micro/go-api/router"
-	"github.com/micro/go-api/server"
-	"github.com/micro/go-log"
-	"github.com/micro/go-micro"
-	"github.com/micro/micro/internal/handler"
-	"github.com/micro/micro/internal/helper"
-	"github.com/micro/micro/internal/stats"
-	"github.com/micro/micro/plugin"
+	"github.com/jinbanglin/cli"
+	"github.com/jinbanglin/go-api"
+	ahandler "github.com/jinbanglin/go-api/handler"
+	aapi "github.com/jinbanglin/go-api/handler/api"
+	"github.com/jinbanglin/go-api/handler/event"
+	ahttp "github.com/jinbanglin/go-api/handler/http"
+	arpc "github.com/jinbanglin/go-api/handler/rpc"
+	"github.com/jinbanglin/go-api/handler/web"
+	"github.com/jinbanglin/go-api/router"
+	"github.com/jinbanglin/go-api/server"
+	"github.com/jinbanglin/log"
+	"github.com/jinbanglin/go-micro"
+	"github.com/jinbanglin/micro/internal/handler"
+	"github.com/jinbanglin/micro/internal/helper"
+	jhelper "github.com/jinbanglin/helper"
+	"github.com/jinbanglin/micro/internal/stats"
+	"github.com/jinbanglin/micro/plugin"
 )
 
 var (
@@ -69,6 +70,13 @@ func run(ctx *cli.Context) {
 	}
 	if len(ctx.String("handler")) > 0 {
 		Handler = ctx.String("handler")
+	}
+	//add by jinbanglin
+	var querySource map[string][]byte
+	if len(ctx.String("query"))>0{
+		querySource =map[string][]byte{
+			ctx.String("query"):jhelper.String2Byte(ctx.String("source")),
+		}
 	}
 	if len(ctx.String("namespace")) > 0 {
 		Namespace = ctx.String("namespace")
@@ -129,21 +137,22 @@ func run(ctx *cli.Context) {
 	)
 
 	// register rpc handler
-	log.Logf("Registering RPC Handler at %s", RPCPath)
+	log.Infof("Registering RPC Handler at %s", RPCPath)
 	r.HandleFunc(RPCPath, handler.RPC)
 
 	switch Handler {
 	case "rpc":
-		log.Logf("Registering API RPC Handler at %s", APIPath)
+		log.Infof("Registering API RPC Handler at %s", APIPath)
 		rt := router.NewRouter(router.WithNamespace(Namespace), router.WithHandler(api.Rpc))
 		rp := arpc.NewHandler(
+			querySource,
 			ahandler.WithNamespace(Namespace),
 			ahandler.WithRouter(rt),
 			ahandler.WithService(service),
 		)
 		r.PathPrefix(APIPath).Handler(rp)
 	case "api":
-		log.Logf("Registering API Request Handler at %s", APIPath)
+		log.Infof("Registering API Request Handler at %s", APIPath)
 		rt := router.NewRouter(router.WithNamespace(Namespace), router.WithHandler(api.Api))
 		ap := aapi.NewHandler(
 			ahandler.WithNamespace(Namespace),
@@ -152,12 +161,12 @@ func run(ctx *cli.Context) {
 		)
 		r.PathPrefix(APIPath).Handler(ap)
 	case "event":
-		log.Logf("Registering API Event Handler at %s", APIPath)
+		log.Infof("Registering API Event Handler at %s", APIPath)
 		rt := router.NewRouter(router.WithNamespace(Namespace), router.WithHandler(api.Event))
 		ev := event.NewHandler(ahandler.WithNamespace(Namespace), ahandler.WithRouter(rt))
 		r.PathPrefix(APIPath).Handler(ev)
 	case "http", "proxy":
-		log.Logf("Registering API HTTP Handler at %s", ProxyPath)
+		log.Infof("Registering API HTTP Handler at %s", ProxyPath)
 		rt := router.NewRouter(router.WithNamespace(Namespace), router.WithHandler(api.Http))
 		ht := ahttp.NewHandler(
 			ahandler.WithNamespace(Namespace),
@@ -166,7 +175,7 @@ func run(ctx *cli.Context) {
 		)
 		r.PathPrefix(ProxyPath).Handler(ht)
 	case "web":
-		log.Logf("Registering API Web Handler at %s", APIPath)
+		log.Infof("Registering API Web Handler at %s", APIPath)
 		rt := router.NewRouter(router.WithNamespace(Namespace), router.WithHandler(api.Web))
 		w := web.NewHandler(
 			ahandler.WithNamespace(Namespace),
@@ -175,7 +184,7 @@ func run(ctx *cli.Context) {
 		)
 		r.PathPrefix(APIPath).Handler(w)
 	default:
-		log.Logf("Registering API Default Handler at %s", APIPath)
+		log.Infof("Registering API Default Handler at %s", APIPath)
 		r.PathPrefix(APIPath).Handler(handler.Meta(Namespace))
 	}
 
@@ -231,6 +240,16 @@ func Commands() []cli.Command {
 				Name:   "cors",
 				Usage:  "Comma separated whitelist of allowed origins for CORS",
 				EnvVar: "MICRO_API_CORS",
+			},
+			cli.StringFlag{
+				Name:   "query",
+				Usage:  "Url query position source",
+				EnvVar: "MICRO_API_QUERY",
+			},
+			cli.StringFlag{
+				Name:   "source",
+				Usage:  "Url query position source",
+				EnvVar: "MICRO_API_source",
 			},
 		},
 	}

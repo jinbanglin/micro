@@ -6,10 +6,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/cmd"
-	"github.com/micro/go-micro/errors"
-	"github.com/micro/micro/internal/helper"
+	"github.com/jinbanglin/go-micro/client"
+	"github.com/jinbanglin/go-micro/cmd"
+	"github.com/jinbanglin/go-micro/errors"
+	"github.com/jinbanglin/micro/internal/helper"
 )
 
 type rpcRequest struct {

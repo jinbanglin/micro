@@ -3,15 +3,15 @@ package cmd
 import (
 	"strings"
 
-	ccli "github.com/micro/cli"
-	"github.com/micro/go-micro/cmd"
-	"github.com/micro/micro/api"
-	"github.com/micro/micro/bot"
-	"github.com/micro/micro/cli"
-	"github.com/micro/micro/new"
-	"github.com/micro/micro/plugin"
-	"github.com/micro/micro/proxy"
-	"github.com/micro/micro/web"
+	ccli "github.com/jinbanglin/cli"
+	"github.com/jinbanglin/go-micro/cmd"
+	"github.com/jinbanglin/micro/api"
+	"github.com/jinbanglin/micro/bot"
+	"github.com/jinbanglin/micro/cli"
+	"github.com/jinbanglin/micro/new"
+	"github.com/jinbanglin/micro/plugin"
+	"github.com/jinbanglin/micro/proxy"
+	"github.com/jinbanglin/micro/web"
 )
 
 var (

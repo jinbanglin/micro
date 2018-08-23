@@ -17,7 +17,7 @@ The micro proxy provides a http api which serves as a proxy for the cli where an
 ### Install
 
 ```shell
-go get -u github.com/micro/micro
+go get -u github.com/jinbanglin/micro
 ```
 
 ### Dependencies

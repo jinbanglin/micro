@@ -3,7 +3,7 @@ package plugin
 import (
 	"net/http"
 
-	"github.com/micro/cli"
+	"github.com/jinbanglin/cli"
 )
 
 // Plugin is the interface for plugins to micro. It differs from go-micro in that it's for

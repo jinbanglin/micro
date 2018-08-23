@@ -8,18 +8,18 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/micro/cli"
-	"github.com/micro/go-api/server"
-	"github.com/micro/go-log"
-	"github.com/micro/go-micro"
-	"github.com/micro/micro/internal/handler"
-	"github.com/micro/micro/internal/helper"
-	"github.com/micro/micro/internal/stats"
-	"github.com/micro/micro/plugin"
+	"github.com/jinbanglin/cli"
+	"github.com/jinbanglin/go-api/server"
+	"github.com/jinbanglin/log"
+	"github.com/jinbanglin/go-micro"
+	"github.com/jinbanglin/micro/internal/handler"
+	"github.com/jinbanglin/micro/internal/helper"
+	"github.com/jinbanglin/micro/internal/stats"
+	"github.com/jinbanglin/micro/plugin"
 
-	ahandler "github.com/micro/go-api/handler"
-	abroker "github.com/micro/go-api/handler/broker"
-	aregistry "github.com/micro/go-api/handler/registry"
+	ahandler "github.com/jinbanglin/go-api/handler"
+	abroker "github.com/jinbanglin/go-api/handler/broker"
+	aregistry "github.com/jinbanglin/go-api/handler/registry"
 )
 
 type srv struct {
@@ -118,13 +118,13 @@ func run(ctx *cli.Context) {
 		),
 	)
 
-	log.Logf("Registering Registry handler at %s", RegistryPath)
+	log.Infof("Registering Registry handler at %s", RegistryPath)
 	r.Handle(RegistryPath, aregistry.NewHandler(ahandler.WithService(service)))
 
-	log.Logf("Registering RPC handler at %s", RPCPath)
+	log.Infof("Registering RPC handler at %s", RPCPath)
 	r.Handle(RPCPath, http.HandlerFunc(handler.RPC))
 
-	log.Logf("Registering Broker handler at %s", BrokerPath)
+	log.Infof("Registering Broker handler at %s", BrokerPath)
 	br := abroker.NewHandler(
 		ahandler.WithService(service),
 	)

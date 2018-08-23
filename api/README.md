@@ -4,15 +4,15 @@ The **micro api** is an API gateway for microservices. Use the API gateway [patt
 single entry point for your services. The micro api serves HTTP and dynamically routes to the appropriate backend using service discovery.
 
 <p align="center">
-  <img src="https://github.com/micro/docs/blob/master/images/api.png" />
+  <img src="https://github.com/jinbanglin/docs/blob/master/images/api.png" />
 </p>
 
 ## Overview
 
 The micro api is a HTTP api. Requests to the API are served over HTTP and internally routed via RPC. It builds on 
-[go-micro](https://github.com/micro/go-micro), leveraging it for service discovery, load balancing, encoding and RPC based communication.
+[go-micro](https://github.com/jinbanglin/go-micro), leveraging it for service discovery, load balancing, encoding and RPC based communication.
 
-Because the micro api uses go-micro internally, this also makes it pluggable. See [go-plugins](https://github.com/micro/go-plugins) for 
+Because the micro api uses go-micro internally, this also makes it pluggable. See [go-plugins](https://github.com/jinbanglin/go-plugins) for 
 support for gRPC, kubernetes, etcd, nats, rabbitmq and more.
 
 ## Getting started
@@ -27,7 +27,7 @@ support for gRPC, kubernetes, etcd, nats, rabbitmq and more.
 ### Install
 
 ```shell
-go get -u github.com/micro/micro
+go get -u github.com/jinbanglin/micro
 ```
 
 ### Run
@@ -80,7 +80,7 @@ Here we have an example of a 3 tier architecture
 - `api service`: (go.micro.api.greeter) - serving a public facing api
 - `backend service`: (go.micro.srv.greeter) - internally scoped service
 
-The full example is at [examples/greeter](https://github.com/micro/examples/tree/master/greeter)
+The full example is at [examples/greeter](https://github.com/jinbanglin/examples/tree/master/greeter)
 
 ### Run Example
 
@@ -89,7 +89,7 @@ Prereq: Ensure you are running service discovery e.g consul agent -dev
 Get examples
 
 ```
-git clone https://github.com/micro/examples
+git clone https://github.com/jinbanglin/examples
 ```
 
 Start the service
@@ -153,7 +153,7 @@ See below for examples
 Handlers are HTTP handlers which manage request routing.
 
 The default handler uses endpoint metadata from the registry to determine service routes. If a route match is not found it will 
-fallback to the API handler. You can configure routes on registration using the [go-api](https://github.com/micro/go-api).
+fallback to the API handler. You can configure routes on registration using the [go-api](https://github.com/jinbanglin/go-api).
 
 The API has the following configurable request handlers.
 
@@ -171,7 +171,7 @@ The API handler is the default handler. It serves any HTTP requests and forwards
 
 - Content-Type: Any
 - Body: Any
-- Forward Format: [api.Request](https://github.com/micro/go-api/blob/master/proto/api.proto#L11)/[api.Response](https://github.com/micro/go-api/blob/master/proto/api.proto#L21)
+- Forward Format: [api.Request](https://github.com/jinbanglin/go-api/blob/master/proto/api.proto#L11)/[api.Response](https://github.com/jinbanglin/go-api/blob/master/proto/api.proto#L21)
 - Path: `/[service]/[method]`
 - Resolver: Path is used to resolve service and method
 - Configure: Flag `--handler=api` or env var `MICRO_API_HANDLER=api`
@@ -183,7 +183,7 @@ The event handler serves HTTP and forwards the request as a message over a messa
 
 - Content-Type: Any
 - Body: Any
-- Forward Format: Request is formatted as [go-api/proto.Event](https://github.com/micro/go-api/blob/master/proto/api.proto#L28L39) 
+- Forward Format: Request is formatted as [go-api/proto.Event](https://github.com/jinbanglin/go-api/blob/master/proto/api.proto#L28L39) 
 - Path: `/[topic]/[event]`
 - Resolver: Path is used to resolve topic and event name
 - Configure: Flag `--handler=event` or env var `MICRO_API_HANDLER=event`
@@ -241,7 +241,7 @@ curl -d 'service=go.micro.srv.greeter' \
      http://localhost:8080/rpc
 ```
 
-Find working examples in [github.com/micro/examples/api](https://github.com/micro/examples/tree/master/api)
+Find working examples in [github.com/jinbanglin/examples/api](https://github.com/jinbanglin/examples/tree/master/api)
 
 
 ## Resolver

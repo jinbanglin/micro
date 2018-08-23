@@ -5,7 +5,7 @@ The micro bot is a bot for ChatOps.
 Run the bot inside your platform environment like any other service and interact with it via slack, hipchat, xmpp, etc.
 
 <p align="center">
-  <img src="https://github.com/micro/docs/blob/master/images/bot.png" />
+  <img src="https://github.com/jinbanglin/docs/blob/master/images/bot.png" />
 </p>
 
 ## Getting Started
@@ -20,7 +20,7 @@ Run the bot inside your platform environment like any other service and interact
 ## Install Micro
 
 ```go
-go get github.com/micro/micro
+go get github.com/jinbanglin/micro
 ```
 
 ## Inputs
@@ -33,7 +33,7 @@ Inputs are services from which the bot can send and receive messages. This could
 micro bot --inputs=slack --slack_token=SLACK_TOKEN
 ```
 
-<img src="https://github.com/micro/docs/blob/master/images/slack.png">
+<img src="https://github.com/jinbanglin/docs/blob/master/images/slack.png">
 -
 
 ### HipChat Input
@@ -42,7 +42,7 @@ micro bot --inputs=slack --slack_token=SLACK_TOKEN
 micro bot --inputs=hipchat --hipchat_username=XMPP_USER --hipchat_password=XMPP_PASSWORD
 ```
 
-<img src="https://github.com/micro/docs/blob/master/images/hipchat.png">
+<img src="https://github.com/jinbanglin/docs/blob/master/images/hipchat.png">
 -
 
 Use multiple inputs by specifying a comma separated list
@@ -82,7 +82,7 @@ Commands are functions executed by the bot based on text based pattern matching.
 ### Write a Command
 
 ```go
-import "github.com/micro/go-bot/command"
+import "github.com/jinbanglin/go-bot/command"
 
 func Ping() command.Command {
 	usage := "ping"
@@ -99,7 +99,7 @@ func Ping() command.Command {
 Add the command to the Commands map with a pattern key that can be matched by golang/regexp.Match
 
 ```go
-import "github.com/micro/go-bot/command"
+import "github.com/jinbanglin/go-bot/command"
 
 func init() {
 	command.Commands["^ping$"] = Ping()
@@ -110,7 +110,7 @@ func init() {
 
 Build binary
 ```shell
-cd github.com/micro/micro
+cd github.com/jinbanglin/micro
 
 // For local use
 go build -i -o micro ./main.go
@@ -151,7 +151,7 @@ type Input interface {
 Add the input to the Inputs map.
 
 ```go
-import "github.com/micro/go-bot/input"
+import "github.com/jinbanglin/go-bot/input"
 
 func init() {
 	input.Inputs["name"] = MyInput
@@ -162,7 +162,7 @@ func init() {
 
 Build binary
 ```shell
-cd github.com/micro/micro
+cd github.com/jinbanglin/micro
 
 // For local use
 go build -i -o micro ./main.go
@@ -183,7 +183,7 @@ is executed, the bot will call the service with method `Command.Exec`. It also e
 to exist for usage info.
 
 
-The service interface is as follows and can be found at [go-bot/proto](https://github.com/micro/go-bot/blob/master/proto/bot.proto)
+The service interface is as follows and can be found at [go-bot/proto](https://github.com/jinbanglin/go-bot/blob/master/proto/bot.proto)
 
 ```
 syntax = "proto3";
@@ -225,9 +225,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/micro/go-micro"
+	"github.com/jinbanglin/go-micro"
 
-	proto "github.com/micro/go-bot/proto"
+	proto "github.com/jinbanglin/go-bot/proto"
 )
 
 type Command struct{}

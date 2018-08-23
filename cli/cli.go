@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/micro/cli"
+	"github.com/jinbanglin/cli"
 )
 
 var (

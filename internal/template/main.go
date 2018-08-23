@@ -4,8 +4,8 @@ var (
 	MainFNC = `package main
 
 import (
-	"github.com/micro/go-log"
-	"github.com/micro/go-micro"
+	"github.com/jinbanglin/log"
+	"github.com/jinbanglin/go-micro"
 	"{{.Dir}}/handler"
 	"{{.Dir}}/subscriber"
 )
@@ -36,8 +36,8 @@ func main() {
 	MainSRV = `package main
 
 import (
-	"github.com/micro/go-log"
-	"github.com/micro/go-micro"
+	"github.com/jinbanglin/log"
+	"github.com/jinbanglin/go-micro"
 	"{{.Dir}}/handler"
 	"{{.Dir}}/subscriber"
 
@@ -72,9 +72,9 @@ func main() {
 	MainAPI = `package main
 
 import (
-	"github.com/micro/go-log"
+	"github.com/jinbanglin/log"
 
-	"github.com/micro/go-micro"
+	"github.com/jinbanglin/go-micro"
 	"{{.Dir}}/handler"
 	"{{.Dir}}/client"
 
@@ -106,10 +106,10 @@ func main() {
 	MainWEB = `package main
 
 import (
-        "github.com/micro/go-log"
+        "github.com/jinbanglin/log"
 	"net/http"
 
-        "github.com/micro/go-web"
+        "github.com/jinbanglin/go-web"
         "{{.Dir}}/handler"
 )
 

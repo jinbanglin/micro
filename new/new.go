@@ -10,8 +10,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/micro/cli"
-	tmpl "github.com/micro/micro/internal/template"
+	"github.com/jinbanglin/cli"
+	tmpl "github.com/jinbanglin/micro/internal/template"
 	"github.com/xlab/treeprint"
 )
 
@@ -26,9 +26,9 @@ type config struct {
 	Type string
 	// go.micro.srv.foo
 	FQDN string
-	// github.com/micro/foo
+	// github.com/jinbanglin/foo
 	Dir string
-	// $GOPATH/src/github.com/micro/foo
+	// $GOPATH/src/github.com/jinbanglin/foo
 	GoDir string
 	// $GOPATH
 	GoPath string
@@ -226,7 +226,7 @@ func run(ctx *cli.Context) {
 				"\ndownload protobuf for micro:\n",
 				"brew install protobuf",
 				"go get -u github.com/golang/protobuf/{proto,protoc-gen-go}",
-				"go get -u github.com/micro/protoc-gen-micro",
+				"go get -u github.com/jinbanglin/protoc-gen-micro",
 				"\ncompile the proto file example.proto:\n",
 				"cd " + goDir,
 				"protoc --proto_path=. --go_out=. --micro_out=. proto/example/example.proto\n",
@@ -258,7 +258,7 @@ func run(ctx *cli.Context) {
 				"\ndownload protobuf for micro:\n",
 				"brew install protobuf",
 				"go get -u github.com/golang/protobuf/{proto,protoc-gen-go}",
-				"go get -u github.com/micro/protoc-gen-micro",
+				"go get -u github.com/jinbanglin/protoc-gen-micro",
 				"\ncompile the proto file example.proto:\n",
 				"cd " + goDir,
 				"protoc --proto_path=. --go_out=. --micro_out=. proto/example/example.proto\n",
@@ -290,7 +290,7 @@ func run(ctx *cli.Context) {
 				"\ndownload protobuf for micro:\n",
 				"brew install protobuf",
 				"go get -u github.com/golang/protobuf/{proto,protoc-gen-go}",
-				"go get -u github.com/micro/protoc-gen-micro",
+				"go get -u github.com/jinbanglin/protoc-gen-micro",
 				"\ncompile the proto file example.proto:\n",
 				"cd " + goDir,
 				"protoc --proto_path=. --go_out=. --micro_out=. proto/example/example.proto\n",

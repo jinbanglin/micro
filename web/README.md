@@ -13,7 +13,7 @@ The **micro web** provides a dashboard to view and query services.
 ### Install
 
 ```bash
-go get github.com/micro/micro
+go get github.com/jinbanglin/micro
 ```
 
 ### Run
@@ -47,11 +47,11 @@ micro --enable_tls --tls_cert_file=/path/to/cert --tls_key_file=/path/to/key web
 
 ## Screenshots
 
-<img src="https://github.com/micro/docs/blob/master/images/web1.png">
+<img src="https://github.com/jinbanglin/docs/blob/master/images/web1.png">
 -
-<img src="https://github.com/micro/docs/blob/master/images/web2.png">
+<img src="https://github.com/jinbanglin/docs/blob/master/images/web2.png">
 -
-<img src="https://github.com/micro/docs/blob/master/images/web3.png">
+<img src="https://github.com/jinbanglin/docs/blob/master/images/web3.png">
 -
-<img src="https://github.com/micro/docs/blob/master/images/web4.png">
+<img src="https://github.com/jinbanglin/docs/blob/master/images/web4.png">
 

@@ -7,15 +7,15 @@ The **micro new** command is a quick way to generate boilerplate templates for m
 Create a new service by specifying a directory path relative to your $GOPATH
 
 ```
-micro new github.com/micro/example
+micro new github.com/jinbanglin/example
 ```
 
 Here it is in action
 
 ```
-micro new github.com/micro/example
+micro new github.com/jinbanglin/example
 
-Creating service go.micro.srv.example in /home/go/src/github.com/micro/example 
+Creating service go.micro.srv.example in /home/go/src/github.com/jinbanglin/example 
 
 .
 ├── main.go
@@ -33,11 +33,11 @@ download protobuf for micro:
 
 brew install protobuf
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
-go get -u github.com/micro/protoc-gen-micro
+go get -u github.com/jinbanglin/protoc-gen-micro
 
 compile the proto file example.proto:
 
-cd /home/go/src/github.com/micro/example
+cd /home/go/src/github.com/jinbanglin/example
 protoc --proto_path=. --go_out=. --micro_out=. proto/example/example.proto
 ```
 
@@ -46,7 +46,7 @@ protoc --proto_path=. --go_out=. --micro_out=. proto/example/example.proto
 Specify more options such as namespace, type, fqdn and alias
 
 ```
-micro new --fqdn io.foobar.srv.example github.com/micro/example
+micro new --fqdn io.foobar.srv.example github.com/jinbanglin/example
 ```
 
 ## Plugins

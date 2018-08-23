@@ -1,4 +1,4 @@
-# Micro [![License](https://img.shields.io/:license-apache-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GoDoc](https://godoc.org/github.com/micro/micro?status.svg)](https://godoc.org/github.com/micro/micro) [![Travis CI](https://travis-ci.org/micro/micro.svg?branch=master)](https://travis-ci.org/micro/micro) [![Go Report Card](https://goreportcard.com/badge/micro/micro)](https://goreportcard.com/report/github.com/micro/micro)
+# Micro [![License](https://img.shields.io/:license-apache-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GoDoc](https://godoc.org/github.com/jinbanglin/micro?status.svg)](https://godoc.org/github.com/jinbanglin/micro) [![Travis CI](https://travis-ci.org/micro/micro.svg?branch=master)](https://travis-ci.org/micro/micro) [![Go Report Card](https://goreportcard.com/badge/micro/micro)](https://goreportcard.com/report/github.com/jinbanglin/micro)
 
 Micro is a toolkit for cloud-native development. It helps you build future-proof application platforms and services.
 
@@ -15,15 +15,15 @@ Plug in any stack or underlying technology. Build future-proof systems using mic
 
 The toolkit is composed of the following features:
 
-- [**`api`**](https://github.com/micro/micro/tree/master/api) - API Gateway. A single entry point with dynamic routing using service discovery.
+- [**`api`**](https://github.com/jinbanglin/micro/tree/master/api) - API Gateway. A single entry point with dynamic routing using service discovery.
 
-- [**`bot`**](https://github.com/micro/micro/tree/master/bot) - Slack and hipchat bot. CLI and ChatOps via messaging.
+- [**`bot`**](https://github.com/jinbanglin/micro/tree/master/bot) - Slack and hipchat bot. CLI and ChatOps via messaging.
 
-- [**`cli`**](https://github.com/micro/micro/tree/master/cli) - Command line interface. Describe, query and interact directly from the terminal. 
+- [**`cli`**](https://github.com/jinbanglin/micro/tree/master/cli) - Command line interface. Describe, query and interact directly from the terminal. 
 
-- [**`new`**](https://github.com/micro/micro/tree/master/new) - Service template generation. Get started quickly.
+- [**`new`**](https://github.com/jinbanglin/micro/tree/master/new) - Service template generation. Get started quickly.
 
-- [**`web`**](https://github.com/micro/micro/tree/master/web) - Web dashboard to interact via a browser.
+- [**`web`**](https://github.com/jinbanglin/micro/tree/master/web) - Web dashboard to interact via a browser.
 
 ## Docs
 
@@ -43,7 +43,7 @@ For more detailed information on the architecture, installation and use of the t
 ## Install Micro
 
 ```shell
-go get -u github.com/micro/micro
+go get -u github.com/jinbanglin/micro
 ```
 
 Or via Docker
@@ -63,7 +63,7 @@ The micro toolkit has two dependencies:
 
 Service discovery is used for name resolution, routing and centralising metadata.
 
-Micro uses the [go-micro](https://github.com/micro/go-micro) registry for service discovery. Consul is the default registry. 
+Micro uses the [go-micro](https://github.com/jinbanglin/go-micro) registry for service discovery. Consul is the default registry. 
 
 ### Consul
 
@@ -91,7 +91,7 @@ micro --registry=mdns list services
 MICRO_REGISTRY=mdns micro list services`
 ```
 
-See [go-plugins](https://github.com/micro/go-plugins) for more service discovery plugins.
+See [go-plugins](https://github.com/jinbanglin/go-plugins) for more service discovery plugins.
 
 ## Protobuf
 
@@ -105,16 +105,16 @@ brew install protobuf
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 
 # install protoc-gen-micro
-go get -u github.com/micro/protoc-gen-micro
+go get -u github.com/jinbanglin/protoc-gen-micro
 ```
 
-See [protoc-gen-micro](https://github.com/micro/protoc-gen-micro) for more details.
+See [protoc-gen-micro](https://github.com/jinbanglin/protoc-gen-micro) for more details.
 
 ## Writing a service
 
 Micro includes new template generation to speed up writing applications
 
-For full details on writing services see [**go-micro**](https://github.com/micro/go-micro).
+For full details on writing services see [**go-micro**](https://github.com/jinbanglin/go-micro).
 
 ### Generate template
 
@@ -123,7 +123,7 @@ Here we'll quickly generate an example template using `micro new`
 Specify a path relative to $GOPATH
 
 ``` 
-micro new github.com/micro/example
+micro new github.com/jinbanglin/example
 ```
 
 The command will output
@@ -294,7 +294,7 @@ See the [api doc](https://micro.mu/docs/api.html) for more info.
 
 ## Plugins
 
-Micro is built on [go-micro](https://github.com/micro/go-micro) making it a pluggable toolkit.
+Micro is built on [go-micro](https://github.com/jinbanglin/go-micro) making it a pluggable toolkit.
 
 Go-micro provides abstractions for distributed systems infrastructure which can be swapped out.
 
@@ -309,7 +309,7 @@ The micro features which are pluggable:
 - client - the client which manages the above features
 - server - the server which manages the above features
 
-Find plugins at [go-plugins](https://github.com/micro/go-plugins)
+Find plugins at [go-plugins](https://github.com/jinbanglin/go-plugins)
 
 ### Using Plugins
 
@@ -319,11 +319,11 @@ Create a plugins.go file
 ```go
 import (
 	// etcd v3 registry
-	_ "github.com/micro/go-plugins/registry/etcdv3"
+	_ "github.com/jinbanglin/go-plugins/registry/etcdv3"
 	// nats transport
-	_ "github.com/micro/go-plugins/transport/nats"
+	_ "github.com/jinbanglin/go-plugins/transport/nats"
 	// kafka broker
-	_ "github.com/micro/go-plugins/broker/kafka"
+	_ "github.com/jinbanglin/go-plugins/broker/kafka"
 )
 ```
 

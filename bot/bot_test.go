@@ -7,12 +7,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/micro/cli"
-	"github.com/micro/go-bot/command"
-	"github.com/micro/go-bot/input"
+	"github.com/jinbanglin/cli"
+	"github.com/jinbanglin/go-bot/command"
+	"github.com/jinbanglin/go-bot/input"
 
-	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/registry/mock"
+	"github.com/jinbanglin/go-micro"
+	"github.com/jinbanglin/go-micro/registry/mock"
 )
 
 type testInput struct {
