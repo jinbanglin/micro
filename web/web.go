@@ -21,7 +21,6 @@ import (
 	"github.com/jinbanglin/go-micro/registry"
 	"github.com/jinbanglin/go-micro/selector"
 	"github.com/jinbanglin/go-micro/selector/cache"
-	"github.com/jinbanglin/micro/internal/handler"
 	"github.com/jinbanglin/micro/internal/helper"
 	"github.com/jinbanglin/micro/internal/stats"
 	"github.com/jinbanglin/micro/plugin"
@@ -347,12 +346,12 @@ func run(ctx *cli.Context) {
 	}
 
 	s.HandleFunc("/registry", registryHandler)
-	s.HandleFunc("/rpc", handler.RPC)
-	s.HandleFunc("/cli", cliHandler)
-	s.HandleFunc("/call", callHandler)
-	s.HandleFunc("/favicon.ico", faviconHandler)
-	s.PathPrefix("/{service:[a-zA-Z0-9]+}").Handler(s.proxy())
-	s.HandleFunc("/", indexHandler)
+	//s.HandleFunc("/rpc", handler.RPC)
+	//s.HandleFunc("/cli", cliHandler)
+	//s.HandleFunc("/call", callHandler)
+	//s.HandleFunc("/favicon.ico", faviconHandler)
+	//s.PathPrefix("/{service:[a-zA-Z0-9]+}").Handler(s.proxy())
+	//s.HandleFunc("/", indexHandler)
 
 	var opts []server.Option
 
