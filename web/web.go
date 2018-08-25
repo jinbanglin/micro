@@ -350,7 +350,7 @@ func run(ctx *cli.Context) {
 	//s.HandleFunc("/cli", cliHandler)
 	//s.HandleFunc("/call", callHandler)
 	//s.HandleFunc("/favicon.ico", faviconHandler)
-	//s.PathPrefix("/{service:[a-zA-Z0-9]+}").Handler(s.proxy())
+	s.PathPrefix("/{service:[a-zA-Z0-9]+}").Handler(s.proxy())
 	//s.HandleFunc("/", indexHandler)
 
 	var opts []server.Option
