@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package msg;
+
+//传递的消息结构体
+message Message {
+    uint32 code = 1;
+    string msg = 2;
+    //    string session = 3;
+}
+
+message WsPacket {
+    uint32 service_code = 1; // communicate by protocol
+    bytes payload = 2; // payload json or protobuf
+    Message message = 3;
+    string id = 4; //socket broadcast object
+}
+
+//protoc --proto_path=${GOPATH}/src:. --gogofast_out=plugins=micro:. *.proto
