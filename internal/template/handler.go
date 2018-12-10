@@ -43,7 +43,7 @@ func (e *Example) Stream(ctx context.Context, req *example.StreamingRequest, str
 
 	for i := 0; i < int(req.Count); i++ {
 		log.Infof("Responding: %d", i)
-		if err := stream.Send(&example.StreamingResponse{
+		if err := stream.send(&example.StreamingResponse{
 			Count: int64(i),
 		}); err != nil {
 			return err
@@ -61,7 +61,7 @@ func (e *Example) PingPong(ctx context.Context, stream example.Example_PingPongS
 			return err
 		}
 		log.Infof("Got ping %v", req.Stroke)
-		if err := stream.Send(&example.Pong{Stroke: req.Stroke}); err != nil {
+		if err := stream.send(&example.Pong{Stroke: req.Stroke}); err != nil {
 			return err
 		}
 	}
