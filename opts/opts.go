@@ -55,7 +55,8 @@ func SServerMakeClient(service micro.Service) client.Client {
 }
 
 //web socket or http opts
-func WServerWithOptions(name string) (opts []web.Option) {
+func WServerWithOptions(name string,f func()) (opts []web.Option) {
+  f()
   return []web.Option{
     web.Name(name),
     web.Registry(registry.NewRegistry(
