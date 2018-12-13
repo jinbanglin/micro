@@ -92,7 +92,7 @@ func HUB(next server.HandlerFunc) server.HandlerFunc {
     if helper.IsNilString(soleID) {
       return ServerInternalError
     }
-    log.Infof2(ctx, " |HUB_REQ |service=%s |method=%s "+
+    log.Infof2(ctx, "HUB_REQ |service=%s |method=%s "+
       "|address=%s |version=%s |content_type=%s |request=%v",
       req.Service()+"-"+server.DefaultServer.Options().Id,
       req.Method(),
@@ -112,7 +112,7 @@ func HUB(next server.HandlerFunc) server.HandlerFunc {
       return nil
     } else if err == redis.Nil {
       err = next(ctx, req, rsp)
-      log.Infof2(ctx, " |HUB_RSP |duration=%v |service=%s |method=%s "+
+      log.Infof2(ctx, "HUB_RSP |duration=%v |service=%s |method=%s "+
         "|address=%s |version=%s |content_type=%s |response=%v |err=%v",
         time.Since(now),
         req.Service()+"-"+server.DefaultServer.Options().Id,
