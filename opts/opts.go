@@ -19,6 +19,10 @@ import (
   "github.com/jinbanglin/log"
   "github.com/spf13/viper"
   "errors"
+  _ "net/http/pprof"
+  "github.com/jinbanglin/moss/transport/http"
+  "runtime/debug"
+  "fmt"
 )
 
 //client opts
@@ -34,6 +38,7 @@ func WClientOptions() (opts []client.Option) {
 
 //socket server opts
 func SServerOptions(name string) (opts []micro.Option) {
+  openPProf()
   return []micro.Option{
     micro.Name(name),
     micro.Registry(registry.NewRegistry(
@@ -48,6 +53,14 @@ func SServerOptions(name string) (opts []micro.Option) {
   }
 }
 
+func openPProf() {
+  if port := viper.GetString("server.pprof"); helper.IsNotNilString(port) {
+    go func() {
+      http.ListenAndServe(port, nil)
+    }()
+  }
+}
+
 func SServerMakeClient(service micro.Service) client.Client {
   c := service.Client()
   c.Init(client.Retries(3), client.RequestTimeout(time.Second*10))
@@ -57,6 +70,7 @@ func SServerMakeClient(service micro.Service) client.Client {
 //web socket or http opts
 func WServerWithOptions(name string, f func()) (opts []web.Option) {
   f()
+  openPProf()
   return []web.Option{
     web.Name(name),
     web.Registry(registry.NewRegistry(
@@ -132,5 +146,14 @@ func HUB(next server.HandlerFunc) server.HandlerFunc {
       )
     }
     return err
+  }
+}
+
+//defer Recover()
+func Recover() {
+  if err := recover(); err != nil {
+    fmt.Println(err)
+    log.Stack(err)
+    debug.PrintStack()
   }
 }
