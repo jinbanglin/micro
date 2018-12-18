@@ -4,7 +4,7 @@ import (
   "bytes"
   "context"
   "time"
-
+  "net/http"
   "github.com/gin-gonic/gin"
   "github.com/go-redis/redis"
   "github.com/jinbanglin/go-micro"
@@ -20,7 +20,6 @@ import (
   "github.com/spf13/viper"
   "errors"
   _ "net/http/pprof"
-  "github.com/jinbanglin/moss/transport/http"
   "runtime/debug"
   "fmt"
 )
@@ -56,7 +55,7 @@ func SServerOptions(name string) (opts []micro.Option) {
 func openPProf() {
   if port := viper.GetString("server.pprof"); helper.IsNotNilString(port) {
     go func() {
-      http.ListenAndServe(port, nil)
+      log.Fatal(http.ListenAndServe(port, nil))
     }()
   }
 }
