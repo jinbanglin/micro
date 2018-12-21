@@ -78,7 +78,6 @@ func WServerWithOptions(name string, f func()) (opts []web.Option) {
     web.RegisterTTL(time.Second * 30),
     web.RegisterInterval(time.Second * 15),
   }
-  return
 }
 
 type ResponseLogWriter struct {
