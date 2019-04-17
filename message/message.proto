@@ -9,4 +9,4 @@ message Message {
     //    string session = 3;
 }
 
-//protoc --proto_path=${GOPATH}/src:. --gogofast_out=plugins=micro:. *.proto
+//protoc --proto_path=${GOPATH}/src:. --gogofaster_out=. --micro_out=:. *.proto
